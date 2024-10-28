@@ -1,0 +1,14 @@
+
+RewriteEngine On
+
+# إزالة الشرطة المائلة في نهاية URL إذا لم يكن الملف موجودًا
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)/$ /$1 [R=301,L]
+
+# إذا كان الطلب ليس لملف أو دليل حقيقي
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# إعادة كتابة العناوين التي لا تحتوي على امتداد .php إلى الملف المقابل بامتداد .php
+RewriteRule ^([^\.]+)$ $1.php [L,QSA]
